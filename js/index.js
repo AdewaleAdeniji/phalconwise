@@ -54,10 +54,10 @@ function setUserToken(token){
 }
 function httpPost(requrl,reqbody){
     if(window.location.origin=='http://localhost'){
-           var prefix ='http://localhost/falconley/';
+           var prefix ='http://localhost/falconley';
        }
        else {
-            var prefix ='https://phalconwise.herokuapp.com/';
+            var prefix ='https://phalconwise.herokuapp.com';
         //var prefix = "https://begetmusic.com/sorosoke/";
      }
     // console.log(prefix+requrl);
@@ -78,10 +78,10 @@ function httpPost(requrl,reqbody){
 }
 function http(requrl){
     if(window.location.origin=='http://localhost'){
-           var prefix ='http://localhost/falconley/';
+           var prefix ='http://localhost/falconley';
        }
        else {
-            var prefix ='https://phalconwise.herokuapp.com/';
+            var prefix ='https://phalconwise.herokuapp.com';
         //var prefix = "https://begetmusic.com/sorosoke/";
      }
     // console.log(prefix+requrl);

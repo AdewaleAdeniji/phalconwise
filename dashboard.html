@@ -189,12 +189,17 @@ if (localStorage.getItem('darkMode') === "on") {
                 </div><button class="header__search"><svg class="icon icon-search">
                     <use xlink:href="img/sprite.svg#icon-search"></use>
                   </svg></button>
-                <div class="notifications"><button class="notifications__open"><svg class="icon icon-bell">
+                <div class="notifications">
+                  <button class="notifications__open">
+                  <svg class="icon icon-bell">
                       <use xlink:href="img/sprite.svg#icon-bell"></use>
-                    </svg><span class="notifications__counter">2</span></button>
+                    </svg>
+                    <span class="notifications__counter">2</span>
+                    </button>
                   <div class="notifications__wrap">
                     <div class="notifications__info h6">Recent Notification</div>
-                    <div class="notifications__list"><a class="notifications__item" href="notifications.html">
+                    <div class="notifications__list">
+                      <a class="notifications__item" href="notifications.html">
                         <div class="notifications__ava"><img class="notifications__pic" src="img/ava-1.png" alt="" />
                           <div class="notifications__status bg-blue"><img class="notifications__pic" src="img/chat.html" alt="" /></div>
                         </div>
@@ -205,9 +210,12 @@ if (localStorage.getItem('darkMode') === "on") {
                           </div>
                           <div class="notifications__text caption-sm">Commented on <span class="notifications__project">Collab Design</span></div>
                         </div>
-                      </a><a class="notifications__item" href="notifications.html">
+                      </a>
+                      <a class="notifications__item" href="notifications.html">
                         <div class="notifications__ava"><img class="notifications__pic" src="img/ava-1.png" alt="" />
-                          <div class="notifications__status bg-green"><img class="notifications__pic" src="img/bag.svg" alt="" /></div>
+                          <div class="notifications__status bg-green">
+                            <img class="notifications__pic" src="img/bag.svg" alt="" />
+                            </div>
                         </div>
                         <div class="notifications__details">
                           <div class="notifications__line">
@@ -276,7 +284,7 @@ if (localStorage.getItem('darkMode') === "on") {
                         <div class="widget__counter title title_md color-purple">&#8358;1000479.4</div>
                         <div class="widget__text">Total amount in your spending wallet</div>
                         
-                        <!---<a class="widget__btn btn btn_white btn_wide" href="payouts">View Transactions</a>---!>
+                      
                     </div>
                     <div class="widget widget_stat widget_pb60">
                         <div class="widget__title">Total Wallet Balance</div>
@@ -289,27 +297,47 @@ if (localStorage.getItem('darkMode') === "on") {
                 <div class="slider__container">
                   <div class="slider__inner owl-carousel js-slider">
                     <div class="slider__item">
-                      <div class="slider__details">
+                      <div class="slider__details phalcontext">
                         <div class="slider__title h5">Welcome to Phalconwise!</div>
                         <div class="slider__text">  
+                            Life is more simpler if I can have different bank accounts dedicated for different purposes.<br/>
+                            Imagine if I saved my tuition fees in an account, my spending cash in another, my accomodation in another account.<br/>
+                            Sounds great right? why? Because I can focus on my spending account without muddling things up.<br/>
+                            I can also save more into the created accounts without troubles.<br/>
+                            should I tell you about the zero fees saving, transfers and withdrawals? <br/>
+                            Well, Phalconwise is free!<br/>
+                            Your funds are safe with Phalconwise<br/>
+                            To create a new virtual account for payment, Please head over to the accounts page
                             
                         </div>
-                        <a class="slider__btn btn btn_white js-popup-open" href="#popup-settings" data-effect="mfp-zoom-in">Settings</a>
+                        <a class="slider__btn btn btn_white" href="#popup-settings" data-effect="mfp-zoom-in">Accounts</a>
                       </div>
-                      <div class="slider__preview"><img class="slider__pic" src="img/slider-pic.png" alt=""></div>
+                      
                     </div>
                     
                     <div class="slider__item">
-                      <div class="slider__details">
-                        <div class="slider__title h5">Set a Google Analytics Code</div>
-                        <div class="slider__text">Did you know you can set a Google Analytics code for your products?</div><a class="slider__btn btn btn_white js-popup-open" href="#popup-settings" data-effect="mfp-zoom-in">Settings</a>
+                      <div class="slider__details phalcontext70">
+                        <div class="slider__title h5">Heard about the Gift Code?</div>
+                        <div class="slider__text">
+                            I don't know how to break this news but ... <br/>
+                            You can create Gift Code on Phalconwise. <br/>
+                            and so what right?<br/>    
+                            <br/>
+                            Listen, Here's the leverage that brings to you as a Phalcon!,<br/>
+                            You can use this code to pay, receive money, gift your friends and loved ones.<br/>
+                            The Gift Code is payment made simpler!.
+                        </div><a class="slider__btn btn btn_white" href="#popup-settings" data-effect="mfp-zoom-in">Create a Gift Code</a>
                       </div>
                       <div class="slider__preview"><img class="slider__pic" src="img/slider-pic.png" alt=""></div>
                     </div>
                     <div class="slider__item">
-                      <div class="slider__details">
-                        <div class="slider__title h5">Set a Google Analytics Code</div>
-                        <div class="slider__text">Did you know you can set a Google Analytics code for your products?</div><a class="slider__btn btn btn_white js-popup-open" href="#popup-settings" data-effect="mfp-zoom-in">Settings</a>
+                      <div class="slider__details phalcontext70">
+                        <div class="slider__title h5">Well, Thanks for coming this far!</div>
+                        <div class="slider__text">
+                            We are all caught up right now, I'll let you know if I have any new information for you! <br/>
+                            But while you're here keep rocking and flexing like a Phalcon that you are,<br/>
+                            <b>Sapa</b> will not catch you 
+                        </div><a class="slider__btn btn btn_white" href="#popup-settings" data-effect="mfp-zoom-in">Thumbs Up!</a>
                       </div>
                       <div class="slider__preview"><img class="slider__pic" src="img/slider-pic.png" alt=""></div>
                     </div>
@@ -318,6 +346,7 @@ if (localStorage.getItem('darkMode') === "on") {
                     </svg></button>
                 </div>
               </div>
+              <div class="page__col">
               <div class="page__widgets">
                 <div class="widget widget_shadow">
                   <div class="widget__title">Earnings by item</div>
@@ -374,6 +403,7 @@ if (localStorage.getItem('darkMode') === "on") {
                         <div class="widget__info caption">Coded Template</div>
                       </div>
                     </a></div>
+                </div>
                 </div>
               
               </div>
@@ -467,5 +497,5 @@ if (localStorage.getItem('darkMode') === "on") {
     <script src="js/charts.js"></script>
   </body>
 
-<!-- Mirrored from ui8-unity.herokuapp.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 27 Jun 2021 01:28:25 GMT -->
+
 </html>

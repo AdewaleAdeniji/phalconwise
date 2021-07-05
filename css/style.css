@@ -31,16 +31,22 @@ img.imglogologin {
 .popup__tags.align-right.float-right {
     float: right;
 }
-
-
-
+.phalcontext {
+    width: 100%;
+}
+.phalcontext80 {
+    width: 80%;
+}
+.phalcontext70 {
+    width: 70%;
+}
 /* all screen widths*/
 @media(min-width:1000px){
     .widget__counter.title.title_md.color-purple {
         font-size: 40px;
     }
 }
-@media(min-width:500px){
+@media(max-width:1000px){
     .widget__counter.title.title_md.color-purple {
         font-size: 50px;
     }
