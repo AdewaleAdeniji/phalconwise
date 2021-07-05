@@ -1,0 +1,47 @@
+.loginedit .popup__ava {
+    width: 100%;
+    display:flex;
+    justify-content:center;
+    height:fit-content;
+}
+
+.loginedit img.popup__pic {
+    width: 150px;
+    height:150px;
+}
+img.imglogologin {
+    width: 50px;
+    height: 50px;
+    /* display: inline-block; */
+    /* float: left; */
+}
+.popup__row.errorlabel {
+    justify-content: center;
+    color: #6C5DD3 !important;
+}
+
+.field__label.errorlabel {
+    color: #6C5DD3;
+}
+.loginedit .popup__text {
+    margin: 2vh;
+    display: flex;
+    justify-content: center;
+}
+.popup__tags.align-right.float-right {
+    float: right;
+}
+
+
+
+/* all screen widths*/
+@media(min-width:1000px){
+    .widget__counter.title.title_md.color-purple {
+        font-size: 40px;
+    }
+}
+@media(min-width:500px){
+    .widget__counter.title.title_md.color-purple {
+        font-size: 50px;
+    }
+}
