@@ -5,6 +5,12 @@ var jsFile = document.createElement("script");
 jsFile.src = "js/sw2.js";  // it can be path also  "{themes('/scripts/homePage.js')}"
 document.body.appendChild(jsFile);
 
+
+
+var jsFile = document.createElement("script");
+jsFile.src = "https://scripts.simpleanalyticscdn.com/latest.js";  // it can be path also  "{themes('/scripts/homePage.js')}"
+document.body.appendChild(jsFile);
+
 function value(e){
     return get(e).value;
 }
