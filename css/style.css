@@ -40,6 +40,7 @@ img.imglogologin {
 .phalcontext70 {
     width: 70%;
 }
+.popup__tags.align-right.float-right {display: block;}
 /* all screen widths*/
 @media(min-width:1000px){
     .widget__counter.title.title_md.color-purple {
