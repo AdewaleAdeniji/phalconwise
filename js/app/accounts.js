@@ -19,7 +19,7 @@ if(token){
     })
 }
 else {
-    redirectTo('index');
+    redirectTo('login');
 }
 
 }
