@@ -40,15 +40,112 @@ img.imglogologin {
 .phalcontext70 {
     width: 70%;
 }
+.hidden {
+    display: none;
+}
 .popup__tags.align-right.float-right {display: block;}
 /* all screen widths*/
+div#loadscreen {
+    background: rgba(0,0,0,0.7);
+    background: #12112de8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+}
+.loadcontent {
+    font-size: 15px;
+    text-align: center;
+    font-family: 'POPPINS';
+    animation-name:loadtext;
+    animation-duration:1s;
+    animation-iteration-count:infinite;
+}
+.bg-white{
+    background: #fff;
+}
+.notifications__user.caption:first-letter {
+    text-transform: uppercase;
+}
+.products__col.color-red.mobilebalance {
+    flex: none;
+    margin-right: 5vw;
+}
+
+.products__status.caption.bg-green.accountstatus {
+    margin-right: 5vw;
+}
+
+.products__col.color-gray.datecreated {
+    display: flex;
+    justify-content: center;
+    flex: none;
+}
+.products__line {
+    justify-content: space-evenly;
+}
+.clickable {
+    cursor: pointer;
+}
+.clickable .products__cell {
+    width: fit-content;
+    max-width: 100px !important;
+    padding: 10px !important;
+    word-break: break-word;
+}
+@keyframes loadtext{
+    0% {
+        color:#e15b64;
+    }
+    25%{
+       color:#f47e60;
+    }
+    50% {
+        color:#f8b26a;
+    }
+    75%{
+        color:#abbd81;
+    }
+    100% {
+        color:#e15b64;
+    }
+}
 @media(min-width:1000px){
     .widget__counter.title.title_md.color-purple {
         font-size: 40px;
     }
 }
+
 @media(max-width:1000px){
     .widget__counter.title.title_md.color-purple {
         font-size: 50px;
+    }
+}
+/*mobile devices*/
+@media (max-width:500px) {
+    img.slider__pic,.slider__preview {
+        display: none  !important;
+    }
+    .slider__details {
+        padding-top: 10vh;
+    }
+    .phalcontext70 {
+        width: 100%;
+    }
+    .amounthidden {
+        display: none;
+    }
+    .products__row.clickable {
+        margin-top: 4vh;
+    }
+    .clickable .products__cell {
+        word-break: break-word;
+        width: fit-content;
+        max-width: fit-content !important;
     }
 }

@@ -2761,7 +2761,7 @@ body.dark .header__search .icon {
   height: 48px;
   padding: 0 10px 0 44px;
   border-radius: 12px;
-  background: transparent;
+  background: #E4E4E4;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   color: #11142D;
@@ -3589,11 +3589,11 @@ body.dark .dropdown.active .dropdown__head {
   border-bottom: 1px solid #E4E4E4;
 }
 
-.products__cell:first-child {
+/* .products__cell:first-child {
   width: 20px;
   padding: 0;
   font-size: 0;
-}
+} */
 
 .products__item {
   display: -webkit-inline-box;
