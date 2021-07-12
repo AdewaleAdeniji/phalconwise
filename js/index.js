@@ -145,7 +145,7 @@ if(token){
     setitem('usertoken',token)
 }
 $('.home').click(function(){
-    redirectTo('dashboard');
+    redirectTo('index');
 })
 function setUserToken(token){
     user.token = token;
