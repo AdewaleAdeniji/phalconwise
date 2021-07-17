@@ -98,6 +98,7 @@ div#loadscreen {
     padding: 10px !important;
     word-break: break-word;
 }
+
 @keyframes loadtext{
     0% {
         color:#e15b64;
@@ -128,6 +129,9 @@ div#loadscreen {
 }
 /*mobile devices*/
 @media (max-width:500px) {
+    .mobile-hide {
+        display: none;
+    }
     img.slider__pic,.slider__preview {
         display: none  !important;
     }

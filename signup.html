@@ -65,7 +65,7 @@ if (localStorage.getItem('darkMode') === "on") {
           <div class="popup__category caption-sm">Regsiter a Phalconwise Account</div>
           <div class="popup__line">
             <div class="popup__ava">
-            <img class="popup__pic" src="img/ava.png" alt=""></div>
+            <img class="popup__pic mobile-hide" src="img/ava.png" alt=""></div>
           </div>
           <div class="popup__details">
             <div class="popup__text">
@@ -77,7 +77,7 @@ if (localStorage.getItem('darkMode') === "on") {
 
             <div class="popup__field field">
               <div class="field__label">Your Email Address</div>
-              <div class="field__wrap"><input class="field__input" type="email" id="emailaddress" required></div>
+              <div class="field__wrap"><input class="field__input" type="email" id="emailaddress" required autofocus></div>
               <div class="field__label">An email verification code would be sent to this email, Please ensure you have access to the mailbox</div>
             </div>
 
@@ -121,7 +121,7 @@ if (localStorage.getItem('darkMode') === "on") {
         <div class="popup__fieldset">
             <div class="popup__field field">
                 <div class="field__label">Verification code</div>
-                <div class="field__wrap"><input class="field__input" type="password" id="vcode" maxlength="6" minlength="6" required></div>
+                <div class="field__wrap"><input class="field__input" type="password" id="vcode" maxlength="6" minlength="6" required autofocus></div>
                 <div class="field__label">A verification code was sent to your email address, If you didn't receive any email, you can request another email using the button below or better still if you made an error in your email, you can change your email too</div>
             </div>
             <div class="popup__row errorlabel">
