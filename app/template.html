@@ -16,18 +16,18 @@
         <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
-        <meta name="description" content="Phalconwise payments!">
+        <meta name="description" content="Payments made easier and faster by Phalconwise!">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@ui8">
         <meta name="twitter:title" content="Unity">
-        <meta name="twitter:description" content="Phalconwise payments!">
+        <meta name="twitter:description" content="Payments made easier and faster by Phalconwise!">
         <meta name="twitter:creator" content="@ui8">
         <meta name="twitter:image" content="img/twitter-card.jpg">
         <meta property="og:title" content="Phalconwise">
         <meta property="og:type" content="Article">
         <meta property="og:url" content="index.html">
         <meta property="og:image" content="img/fb-og-image.jpg">
-        <meta property="og:description" content="Phalconwise payments!">
+        <meta property="og:description" content="Payments made easier and faster by Phalconwise!">
         <meta property="og:site_name" content="Phalconwise">
         <meta property="fb:admins" content="132951670226590">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
@@ -64,49 +64,37 @@ if (localStorage.getItem('darkMode') === "on") {
             <div class="sidebar__list">
               <div class="sidebar__group">
                 <div class="sidebar__caption caption-sm">Phalcon<span>wise</span></div>
-                <div class="sidebar__menu">
-                  <a class="sidebar__item" href="dashboard">
+                <div class="sidebar__menu"><a class="sidebar__item" href="dashboard">
                     <div class="sidebar__icon"><svg class="icon icon-overview">
                         <use xlink:href="img/sprite.svg#icon-overview"></use>
                       </svg></div>
                     <div class="sidebar__text">Overview</div>
                   </a>
-                  <a class="sidebar__item active" href="transfers">
-                    <div class="sidebar__icon"><svg class="icon icon-discovery">
-                        <use xlink:href="img/sprite.svg#icon-discovery"></use>
-                      </svg></div>
-                    <div class="sidebar__text">Spend</div>
-                  </a>
                   
-                  <a class="sidebar__item" href="accounts">
+                  <a class="sidebar__item active" href="accounts">
                     <div class="sidebar__icon"><svg class="icon icon-wallet">
                         <use xlink:href="img/sprite.svg#icon-wallet"></use>
                       </svg></div>
                     <div class="sidebar__text">Accounts</div>
-                  </a>
-                  
-                  <a class="sidebar__item" href="transactions">
-                   
-                    <div class="sidebar__icon"><svg class="icon icon-document">
-                        <use xlink:href="img/sprite.svg#icon-document"></use>
-                      </svg></div>
-                    
-                    <div class="sidebar__text">Transactions</div>
                   </a>
                   <a class="sidebar__item js-popup-open" href="#popup-settings" data-effect="mfp-zoom-in">
                     <div class="sidebar__icon"><svg class="icon icon-settings">
                         <use xlink:href="img/sprite.svg#icon-settings"></use>
                       </svg></div>
                     <div class="sidebar__text">Settings </div>
-                  </a>
-                </div>
+                  </a></div>
               </div>
               
             </div>
             
             <div class="sidebar__profile">
               <div class="sidebar__details">
-               
+                <a class="sidebar__link" href="profile">
+                  <div class="sidebar__icon"><svg class="icon icon-profile">
+                      <use xlink:href="img/sprite.svg#icon-profile"></use>
+                    </svg></div>
+                  <div class="sidebar__text">Profile</div>
+                </a>
                 <a class="sidebar__link logout" href="#">
                   <div class="sidebar__icon"><svg class="icon icon-logout">
                       <use xlink:href="img/sprite.svg#icon-logout"></use>
@@ -115,7 +103,7 @@ if (localStorage.getItem('darkMode') === "on") {
                 </a></div><a class="sidebar__user" href="#">
                 <div class="sidebar__ava"><img class="sidebar__pic" src="img/ava.png" alt="" /></div>
                 <div class="sidebar__desc">
-                  <div class="sidebar__man" id="usernameone"></div>
+                  <div class="sidebar__man" id="usernameone">Tam Tran</div>
                   <div class="sidebar__status caption">Phalcon</div>
                 </div>
                 <div class="sidebar__arrow"><svg class="icon icon-arrows">
@@ -136,7 +124,7 @@ if (localStorage.getItem('darkMode') === "on") {
           <div class="page__row page__row_head">
             <div class="page__col">
               <div class="page__hello h5">Hi <span id="usernametwo"></span></div>
-              <div class="page__welcome h2">Spend</div>
+              <div class="page__welcome h2">Accounts</div>
             </div>
             <div class="page__col">
               <div class="header"><button class="header__burger"></button>
@@ -185,48 +173,44 @@ if (localStorage.getItem('darkMode') === "on") {
             </div>
           </div>
           <div class="page__content">
-            
-            <div class="page__col sideview">
-                
-                <div class="widget widget_shadow">
-                  <div class="widget__title"></div>
-                  <div class="widget__list">
-
-                    
-                    <a class="widget__item" href="transfer">
-                      <div class="widget__preview bg-pink"><img class="widget__pic" src="img/figure-1.png" alt=""></div>
-                      <div class="widget__details">
-                        <div class="widget__category title">Transfer money to Bank Account<svg class="icon icon-arrow-right">
-                            <use xlink:href="img/sprite.svg#icon-arrow-right"></use>
-                          </svg></div>
-
-                      </div>
-                    </a>
-
-
-                    <a class="widget__item" href="sendmoney">
-                      <div class="widget__preview bg-yellow"><img class="widget__pic" src="img/figure-2.png" alt=""></div>
-                      <div class="widget__details">
-                        <div class="widget__category title">Transfer Money to Phaconwise Username<svg class="icon icon-arrow-right">
-                            <use xlink:href="img/sprite.svg#icon-arrow-right"></use>
-                          </svg></div>
-                        
-                      </div>
-                    </a>
-
-                    <a class="widget__item" href="airtime">
-                      <div class="widget__preview bg-blue-light"><img class="widget__pic" src="img/figure-3.png" alt=""></div>
-                      <div class="widget__details">
-                        <div class="widget__category title">Buy Airtime<svg class="icon icon-arrow-right">
-                            <use xlink:href="img/sprite.svg#icon-arrow-right"></use>
-                          </svg></div>
-                       
-                      </div>
-                    </a>
-                    
-                    </div>
+            <div class="banner">
+              <div class="banner__container">
+                <div class="banner__preview"><img class="banner__pic" src="img/banner-pic.png" alt=""></div>
+                <div class="banner__wrap">
+                  <div class="banner__title h3">Your Virtual Accounts</div>
+                  <div class="banner__text">Create a new virtual account in seconds</div><button class="banner__btn btn btn_white">Create Account</button>
                 </div>
-              
+              </div>
+            </div>
+            <div class="page__content page__content_pt64">
+            <div class="page__stat">
+              <div class="page__title h6">Accounts (<span id="accountcount"><i class="fa fa-spinner fa-spin"></i></span>)</div>
+             <br/>
+              <div class="products products_history">
+                <div class="products__table">
+                  <div class="products__row products__row_head">
+                    <div class="products__cell">
+                           
+                    </div>
+                    
+                    <div class="products__cell">Account Details</div>
+                    <div class="products__cell">Balance</div>
+                    <div class="products__cell">Status</div>
+
+                    <div class="products__cell">Date Created</div>
+                    
+                  </div>
+                  </div>
+                  <div class="products__table" id="accountstable">
+                    
+                    <i class="fa fa-spinner fa-spin"></i>
+                    
+                  
+
+                </div>
+                </div>
+                <div class="products__more"><button class="products__btn btn btn_black" onclick="getAccounts()">Load More</button></div>
+              </div>
             </div>
           </div>
           </div>

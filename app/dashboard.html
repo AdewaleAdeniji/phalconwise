@@ -15,18 +15,18 @@
         <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
-        <meta name="description" content="Phalconwise payments!">
+        <meta name="description" content="Payments made easier and faster by Phalconwise!">
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@ui8">
+        <meta name="twitter:site" content="Phalconwise!">
         <meta name="twitter:title" content="Unity">
-        <meta name="twitter:description" content="Phalconwise payments!">
-        <meta name="twitter:creator" content="@ui8">
+        <meta name="twitter:description" content="Payments made easier and faster by Phalconwise!">
+        <meta name="twitter:creator" content="Phalconwise!">
         <meta name="twitter:image" content="img/twitter-card.jpg">
         <meta property="og:title" content="Phalconwise">
         <meta property="og:type" content="Article">
         <meta property="og:url" content="index.html">
         <meta property="og:image" content="img/fb-og-image.jpg">
-        <meta property="og:description" content="Phalconwise payments!">
+        <meta property="og:description" content="Payments made easier and faster by Phalconwise!">
         <meta property="og:site_name" content="Phalconwise">
         <meta property="fb:admins" content="132951670226590">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
@@ -49,6 +49,8 @@
     <script>console.log(localStorage.getItem('darkMode'));
 if (localStorage.getItem('darkMode') === "on") {
 		document.body.classList.add("dark");
+    $('#modeicon').removeClass('fa-sun');
+    $('#modeicon').addClass('fa-moon');
 		document.addEventListener("DOMContentLoaded", function() {
 		  document.querySelector('.js-switch-theme input').checked = true;
 		});
@@ -130,11 +132,22 @@ if (localStorage.getItem('darkMode') === "on") {
             </div>
           </div>
         </div>
-        <div class="sidebar__bottom"><label class="switch switch_theme js-switch-theme"><input class="switch__input" type="checkbox" /><span class="switch__in"><span class="switch__box"></span><span class="switch__icon"><svg class="icon icon-moon">
+        <div class="sidebar__bottom"><label class="switch switch_theme js-switch-theme">
+          <input class="switch__input" type="checkbox" />
+          <span class="switch__in">
+          <span class="switch__box">
+          </span>
+          <span class="switch__icon">
+            <svg class="icon icon-moon">
                   <use xlink:href="img/sprite.svg#icon-moon"></use>
-                </svg><svg class="icon icon-sun">
+            </svg>
+            <svg class="icon icon-sun">
                   <use xlink:href="img/sprite.svg#icon-sun"></use>
-                </svg></span></span></label></div>
+            </svg>
+          </span>
+          </span>
+          </label>
+        </div>
       </div>
       <div class="page__wrapper">
         <div class="page__center">
@@ -194,7 +207,9 @@ if (localStorage.getItem('darkMode') === "on") {
                       <a class="notifications__btn btn btn_black" href="transactions">See all Transactions</a>
                       </div>
                   </div>
-                </div><a class="header__user" href="#"><img class="header__pic" src="img/ava.png" alt="" /></a>
+                </div>
+                <a class="header__user" href="#"><img class="header__pic" src="img/ava.png" alt="" /></a>
+                <a class="header__user modes" href="#"><i class="fa fa-moon" id="modeicon"></i></a>
               </div>
             </div>
           </div>

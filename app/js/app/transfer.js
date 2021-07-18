@@ -1,5 +1,4 @@
 //first thing is to check user token
-var accountdigits = 10;
 load('Loading Profile....');
 var account = {};
 function componentDidMount(){
@@ -20,7 +19,7 @@ if(token){
     })
 }
 else {
-    redirectTo('index');
+    redirectTo('login');
 }
 
 }
@@ -72,6 +71,26 @@ async function dashboard(data){
 
         
     }
+    else if(data.phonenumber=="0"){
+        // Swal.fire({
+        //     icon:'info',
+        //     text:'To create a virtual account on phalconwise, you would need to enter your phone number',
+        //     confirmButtonText:'Okay!',
+        // })
+        // .then((v)=>{
+        //     Swal.fire({
+        //         icon:'question',
+        //         text:'Enter a valid 11 digits mobile phone number',
+        //         input:'tel',
+        //         inputAttributes:{
+        //             required:true,
+        //             min:11,
+        //             maxinput:11,
+        //         },
+        //         validationMessage:'Number must contain only digits and must be 11 characters'
+        //     })
+        // })
+    }
     else {
         //all done
         displayData();
@@ -110,217 +129,215 @@ function displayData(){
     get('usernametwo').innerHTML=data.userhandle;
     
     getTransactions();
-    getAccount();
+    setupBanks();
+
 }
-function getAccount(){
-    var url = window.location.href.split('#');
-    var len = url.length;
-    if(len<2){
-        redirectTo("accounts");
-    }
-    else {
-        var hash = url[len-1];
-        if(hash.length<10){
-            redirectTo("accounts");
-        }
-        else {
-            if(hash.length==accountdigits){
-                fetchAccount(hash);
-            }
-            else {
-                redirectTo("accounts");
-            }
-        }
-    }
-}
-function fetchAccount(accountnumber){
-    var acc = JSON.stringify({"account":accountnumber});
-    httpPost('/transactions/accounts',acc)
+
+function setupBanks(){
+    const loadtext = 'Fetching and populating list of banks ...';
+    load(loadtext);
+    toast(loadtext);
+    http('/transactions/banks')
     .then(response=>response.json())
     .then((data)=>{
+        closeload();
         if(response(data)){
-            transaction(data.text.content,data.text.count);
-            showAccount(data.text.account);
-        }
-        else {
-
+            const banks = data.text;
+            banks.forEach((bank)=>{
+                $("#banklist").append(new Option(bank.name,bank.code));
+            })
         }
     })
     .catch((err)=>{
-        console.log(err);
-        inform('Request Failed,Please reload the page to try again');
+        closeload();
+        toast('Failed to fetch list of banks, Please refresh the page and try again');
     })
 }
-// account: "7810726139"
-// accountid: ""
-// accountname: "Joseph Emmanuel"
-// accountstatus: "1"
-// balance: "18130"
-// bank: "WEMA BANK"
-// created_date: "2021-06-19 13:03:35"
-// description: "Savings"
-// easetryid: "1"
-// flwref: "FLW-1d8955a77b234b77a3a961aba6070b31"
-// orderef: "URF_1624107810723_4988435"
-// payouts: "4"
-// senders: "18"
-// total_balance: "20130"
-// userid: "12"
-var accountinfo = {};
-$(".withdraw").click(function(){
-    var account = accountinfo.account;
-    var balance = accountinfo.balance;
-    Swal.fire({
-        icon:'question',
-        text:'How much do you want to withdraw?',
-        input:'number',
-        inputAttributes:{
-            required:true,
-            min:3
-        },
-        allowEscapeKey:true,
-        allowOutsideClick:true,
-        showCancelButton:true,
-        confirmButtonColor:'#6C5DD3',
-        backdrop:'#12112de8',
-        confirmButtonText:'Withdraw',
-        preConfirm: (pin) => {
-            pin = parseFloat(pin);
-            if(!valnumber(pin)){
-                Swal.showValidationMessage(
-                    `Amount must contain only numbers(0-9)`
-                  )
-            }
-            else if(pin>balance){
-                // console.log(pin,balance);
-                // console.log(pin>balance);
-                // console.log(pin<balance);
-                Swal.showValidationMessage(
-                    `Amount cannot be greater than balance (&#8358;${balance})`
-                )
-            }
-            else if(pin<100){
-                Swal.showValidationMessage(
-                    `Amount must be greater than 100 naira`
-                )
-            }
-            else {
-                return pin
-            }
-        },
-    })
-    .then((bal)=>{
-        if(bal.isConfirmed){
-            if(bal.value){
-                withdrawPurpose(bal.value);
-            }
-        }
-    })
-})
-function withdrawPurpose(amount){
-    Swal.fire({
-        icon:'question',
-        html:'Transaction remarks: <br/>Reason/Purpose for withdrawal',
-        input:'text',
-        allowEscapeKey:true,
-        allowOutsideClick:true,
-        showCancelButton:true,
-        confirmButtonColor:'#6C5DD3',
-        backdrop:'#12112de8',
-        confirmButtonText:'Withdraw',
-        footer:'Field not required'
-    })
-    .then((data)=>{
-        if(data.isConfirmed){
-            if(data.value){
-                if(amount<=accountinfo.balance){
-                    var json = JSON.stringify({"account": accountinfo.account,"amount":amount,"purpose":data.value})
-                    load("Processing Withdrawal...");
-                    httpPost('/accounts/withdraw',json)
+$('.buyairtime').submit(function(e){
+    e.preventDefault();
+    var amount = parseInt(value('amount'));
+    var phonenumber = value('phonenumber');
+
+    if(amount<50){
+        inform('Airtime Amount must be more than 100 naira');
+    }
+    else if(phonenumber.length!=11){
+        inform("Phone Number must be 11 characters");
+    }
+    else if(!valnumber(phonenumber)) {
+        inform("Phone number should contain only numbers(0-9) ");
+    }
+    else {
+        Swal.fire({
+            icon:'question',
+            text:'Enter transaction Pin',
+            input:'password',
+            inputAttributes:{
+                required:true,
+                min:4,
+                maxinput:4,
+                max:4
+            },
+            allowOutsideClick:true,
+            confirmButtonText:'Continue!',
+            showCancelButton:true
+        })
+        .then((pin)=>{
+            if(pin.isConfirmed){
+                if(pin.value){
+                    load('Buying airtime...');
+                    var pinn = pin.value;
+                    var json = JSON.stringify({"phonenumber":phonenumber,"amount":amount,"transactionPin":pinn})
+                    console.log(json);
+                    httpPost('/transfer/airtime',json)
                     .then(response=>response.json())
                     .then((data)=>{
                         closeload();
-                        if(response(data)){
+                        if(data.code==200){
+                            get('amount').value = '';
+                            get('phonenumber').value = '';
                             inform(data.text,'success');
-                            componentDidMount();
                         }
-                    })  
+                        else {
+                            inform(data.text,'warning');
+                        }
+                    })
                     .catch((err)=>{
                         closeload();
                         console.log(err);
-                        inform('Withdrawal Failed','error');
+                        inform('Error Occured while processing your request, Please try again');
                     })
-
-                }
-                else {
-                    Swal.showValidationMessage(
-                        `Amount must be greater than 100 naira`
-                    )
                 }
             }
-        }
-    })
-}
-function showAccount(accountdata){
-    accountinfo = accountdata;
-    get('accountname').innerHTML=accountdata.accountname;
-    var purpose = accountdata.account+' '+accountdata.bank+'<br/><br/>'+accountdata.description;
-    get('accountpurpose').innerHTML=purpose;
-    get('balance').innerHTML=accountdata.balance;
-    get('payouts').innerHTML=accountdata.payouts;
-    get('senders').innerHTML=accountdata.senders;
-}
-function transaction(trxs,count){
-//     account: "7810726139"
-// amount: "10"
-// audit: "0"
-// created_date: "2021-05-29T14:45:38.000Z"
-// flw_ref: "090267210529154855529101011940"
-// identifier: ""
-// payment_type: "bank_transfer"
-// sender: "Feranmi-Airtime"
-// status: "successful"
-// transfer_fee: "0.14"
-// transferid: "1"
-    get('accountcount').innerHTML=count;
-    if(count==0){
-        get('accountstable').innerHTML="No transactions performed yet on this account";
+        })
+    }
+
+
+});
+var status = false;
+var accountname = '';
+var accountno = '';
+var bankcode = '';
+function findBeneficiary(){
+    status = false;
+    accountno = value('accountnumber');
+    bankcode = value('banklist');
+    if(accountno==""||accountno.length!=10){
+        inform('Beneficiary Account Number must be ten characters');
+    }
+    else if(bankcode==""){
+        inform("Please choose beneficiary bank to continue");
     }
     else {
-        var thml = '';
-        trxs.forEach((trx)=>{
-            var html = `<div class="products__row clickable" id="${trx.transferid}">
-                        
-                        
-            <div class="products__cell">
-            <div class="products__transaction caption color-gray">${trx.sender}</div>
-            </div>
-            <div class="products__cell color-blue amounthidden">₦${trx.amount}</div>
-            <div class="products__cell color-blue">${trx.flw_ref}</div>
-            <div class="products__cell">
-            <div class="products__status caption  ${trx.status == "successful" ? "bg-green" : "bg-red"}">${trx.status == "successful" ? "Successful" : trx.status }</div>
-            </div>
-            <div class="products__cell color-gray">${moment(trx.created_date).format('lll')}</div>
-        </div>
-        <br/>
-        <div class="products__body">
-          <div class="products__line">
-              <div class="products__col color-red mobilebalance">&#8358;${trx.amount}</div>
-              <div class="products__status caption accountstatus ${trx.status == "successful" ? "bg-green" : "bg-red"}">${trx.status == "successful" ? "Successful" : trx.status }</div>
-              &nbsp;&nbsp;
-          <div class="products__col color-gray datecreated">${moment(trx.created_date).format('lll')}</div>
-
-        </div>
-      
-
-   
-        </div>`;
-            thml = thml + html;
-
+        var json = JSON.stringify({
+            "accountNumber":accountno,
+            "bankCode":bankcode
+        });
+        load('Validating Bank Account');
+        httpPost('/transfer/initiate',json)
+        .then(response=>response.json())
+        .then((data)=>{
+            closeload();
+            if(response(data)){
+                status = true;
+                accountname = data.text;
+                get('accountname').innerHTML = data.text;
+                get('accountname2').innerHTML = data.text;
+            }
         })
-        get('accountstable').innerHTML=thml;
+        .catch((err)=>{
+            closeload();
+            get('accountname').innerHTML = 'Beneficiary Account Number could not be validated';
+        })
     }
 }
+$('.sendmoney').submit(function(e){
+    e.preventDefault();
+    var accountno = value('accountnumber');
+    var bankcode = value('banklist');
+    var amount = value('amount');
+    if(accountno==""||accountno.length!=10){
+        inform('Beneficiary Account Number must be ten characters');
+    }
+    else if(bankcode==""){
+        inform("Please choose beneficiary bank to continue");
+    }
+    else if(amount<100){
+        inform('Amount must be greater than &#8358;100');
+    }
+    else {
+        var json = JSON.stringify({
+            "accountNumber":accountno,
+            "bankCode":bankcode
+        });
+        load('Validating Bank Account');
+        httpPost('/transfer/initiate',json)
+        .then(response=>response.json())
+        .then((data)=>{
+            closeload();
+            if(response(data)){
+               Swal.fire({
+                   icon:'question',
+                   html:'You are about to transfer &#8358;'+amount+' to '+data.text+'<br/> Please enter your transaction PIn to confirm this transaction:',
+                   input:'password',
+                   inputAttributes:{
+                       required:true,
+                       maxlength:4,
+                       minlength:4
+                   },
+                   validationMessage:'Transaction Pin must be 4 characters',
+                   allowEscapeKey:false,
+                   allowOutsideClick:false,
+                   backdrop:'rgba(0,0,0,0.7)',
+                    confirmButtonText:'Send &#8358;'+amount,
+                    confirmButtonColor:'#6C5DD3',
+                    showCancelButton:true,
+                    cancelButtonText:'Cancel'
+               })
+               .then((data)=>{
+                   if(data.isConfirmed){
+                       
+                       var remarks = value('remarks');
+                       var anony = value('anony');
+                        var obj = {
+                            "accountNumber":accountno,
+                            "bankCode":bankcode,
+                            "transactionPin":data.value,
+                            "amount":amount,
+                            "narration":remarks,
+                            "anony": anony=='' ? false : true
+                        }
+                        var payload = JSON.stringify(obj);
+                        load('Sending....');
+                        httpPost('/transfer/transfer',payload)
+                        .then(response=>response.json())
+                        .then((data)=>{
+                            if(response(data)){
+                                inform(data.text,'success');
+                                toast(data.text);
+                                get('accountnumber').value='';
+                                get('banklist').value = '';
+                                get('amount').value=0;
+                                get('remarks').value='';
+                            }
+                        })
+                        .catch((err)=>{
+                            closeload();
+                            console.log(err);
+                            inform('Transaction Failed');
+                            toast('Error: Transaction Failed');
+                        })
+
+                   }
+               })
+            }
+        })
+        .catch((err)=>{
+            closeload();
+            get('accountname').innerHTML = 'Beneficiary Account Number could not be validated';
+        })
+    }
+})  
 function getAccounts(){
     http('/accounts')
     .then(response=>response.json())
@@ -336,25 +353,27 @@ function getAccounts(){
             data.text.content.forEach((data)=>{
             var thtml = `<div class="products__row clickable" account="${data.account}">
                         
-            <div class="products__cell">
-                
-            </div>
+            
             <div class="products__cell">
             <div class="products__price title">${data.accountname}</div>
+            
             <div class="products__transaction caption color-gray">${data.account} : ${data.bank}</div>
+            </div>
+            <div class="products__cell">         
+            </div><div class="products__cell">         
             </div>
             <div class="products__cell color-blue">&#8358;${data.balance}</div>
             <div class="products__cell">
             <div class="products__status caption  ${data.accountstatus == "0" ? "bg-red" : "bg-green"}">${data.accountstatus == "0" ? "Inactive" : "Active"}</div>
             </div>
-            <div class="products__cell color-gray">${moment(data.created_date).format('lll')}</div>
+            <div class="products__cell color-gray">${moment(moment(data.created_date).format('lll')).add(1, 'hours').calendar()}</div>
         </div>
         <div class="products__body">
             <div class="products__line">
                 <div class="products__col color-red mobilebalance">&#8358;${data.balance}</div>
                 <div class="products__status caption accountstatus ${data.accountstatus == "0" ? "bg-red" : "bg-green"}">${data.accountstatus == "0" ? "Inactive" : "Active"}</div>
                 &nbsp;&nbsp;
-            <div class="products__col color-gray datecreated">${moment(data.created_date).format('lll')}</div>
+            <div class="products__col color-gray datecreated">${moment(moment(data.created_date).format('lll')).add(1, 'hours').calendar()}</div>
             
             </div>
         </div>`;
@@ -373,6 +392,77 @@ function getAccounts(){
         get('accountstable').innerHTML='Error Occured. '
     })
 }
+$('.createaccount').click(function(e){
+    e.preventDefault();
+    Swal.fire({
+        imageUrl:'img/ava-1.png',
+        title:'Create Account',
+        text:'What would you like the account name to be called?',
+        input:'text',
+        inputAttributes:{
+            required:true,
+            min:6,
+        },
+        validationMessage:'Account name cannot be empty and must be more than 6 characters',
+        allowEscapeKey:true,
+        showCancelButton:true,
+        backdrop:'rgba(0,0,0,0.7)',
+        confirmButtonText:'Continue ',
+        confirmButtonColor:'#6C5DD3'
+        // backdrop:'#12112de8'
+    })
+    .then((accountname)=>{
+        if(accountname.value){
+            Swal.fire({
+                icon:'question',
+                text:'For what purpose do you want to create this account ? A little description would do',
+                input:'text',
+                footer:'Not a required field',
+                backdrop:'rgba(0,0,0,0.7)',
+                confirmButtonText:'Continue ',
+                confirmButtonColor:'#6C5DD3',
+                allowEscapeKey:true,
+                showCancelButton:true,
+            })
+            .then((purpose)=>{
+                if(purpose.isConfirmed){
+                    var purpose = purpose.value ? purpose.value  : '';
+                    if(accountname.value==""||accountname.value.length<6){
+                        inform('Account name cannot be empty and must be more than 6 characters');
+                    }
+                    else {
+                        load('Creating Account...');
+                        var data = JSON.stringify({"purpose":purpose,"accountname":accountname.value});
+                        httpPost('/accounts/create',data)
+                        .then(response=>response.json())
+                        .then((data)=>{
+                            closeload();
+                            if(response(data)){
+                                Swal.fire({
+                                    icon:'success',
+                                    html:`Account Created Successfully <br/>
+                                         Account Name: ${data.text.accountname} <br/>
+                                         Account Number: ${data.text.account} <br/>
+                                         Bank: ${data.text.bank}<br/>
+                                         You can now make transfers into this account.`,
+                                    confirmButtonText:'Okay!',
+                                    confirmButtonColor:'#6C5DD3',
+                                })
+                                .then((data)=>{
+                                    componentDidMount();
+                                })
+                            }
+                        })
+                        .catch((err)=>{
+                            closeload();
+                            inform('Error Occured','error');
+                        })
+                    }
+                }
+            })
+        }
+    })
+})
 function getTransactions(){
     //moment('2021-06-19 22:17:49.406763').endOf('day').fromNow();    
 

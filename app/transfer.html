@@ -3,7 +3,7 @@
   <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8">
-    <title>Virtual Accounts</title>
+    <title>Transfer to Bank Account</title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta http-equiv="content-language" content="en">
@@ -16,18 +16,18 @@
         <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
-        <meta name="description" content="Phalconwise payments!">
+        <meta name="description" content="Payments made easier and faster by Phalconwise!">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@ui8">
         <meta name="twitter:title" content="Unity">
-        <meta name="twitter:description" content="Phalconwise payments!">
+        <meta name="twitter:description" content="Payments made easier and faster by Phalconwise!">
         <meta name="twitter:creator" content="@ui8">
         <meta name="twitter:image" content="img/twitter-card.jpg">
         <meta property="og:title" content="Phalconwise">
         <meta property="og:type" content="Article">
         <meta property="og:url" content="index.html">
         <meta property="og:image" content="img/fb-og-image.jpg">
-        <meta property="og:description" content="Phalconwise payments!">
+        <meta property="og:description" content="Payments made easier and faster by Phalconwise!">
         <meta property="og:site_name" content="Phalconwise">
         <meta property="fb:admins" content="132951670226590">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
@@ -64,27 +64,44 @@ if (localStorage.getItem('darkMode') === "on") {
             <div class="sidebar__list">
               <div class="sidebar__group">
                 <div class="sidebar__caption caption-sm">Phalcon<span>wise</span></div>
-                <div class="sidebar__menu"><a class="sidebar__item" href="dashboard">
+                <div class="sidebar__menu">
+                  <a class="sidebar__item" href="dashboard">
                     <div class="sidebar__icon"><svg class="icon icon-overview">
                         <use xlink:href="img/sprite.svg#icon-overview"></use>
                       </svg></div>
                     <div class="sidebar__text">Overview</div>
                   </a>
+                  <a class="sidebar__item active" href="transfers">
+                    <div class="sidebar__icon"><svg class="icon icon-discovery">
+                        <use xlink:href="img/sprite.svg#icon-discovery"></use>
+                      </svg></div>
+                    <div class="sidebar__text">Spend</div>
+                  </a>
                   
-                  <a class="sidebar__item active" href="accounts">
+                  <a class="sidebar__item" href="accounts">
                     <div class="sidebar__icon"><svg class="icon icon-wallet">
                         <use xlink:href="img/sprite.svg#icon-wallet"></use>
                       </svg></div>
                     <div class="sidebar__text">Accounts</div>
+                  </a>
+                  
+                  <a class="sidebar__item" href="transactions">
+                   
+                    <div class="sidebar__icon"><svg class="icon icon-document">
+                        <use xlink:href="img/sprite.svg#icon-document"></use>
+                      </svg></div>
+                    
+                    <div class="sidebar__text">Transactions</div>
                   </a>
                   <a class="sidebar__item js-popup-open" href="#popup-settings" data-effect="mfp-zoom-in">
                     <div class="sidebar__icon"><svg class="icon icon-settings">
                         <use xlink:href="img/sprite.svg#icon-settings"></use>
                       </svg></div>
                     <div class="sidebar__text">Settings </div>
-                  </a></div>
+                  </a>
+                </div>
               </div>
-              
+               
             </div>
             
             <div class="sidebar__profile">
@@ -124,7 +141,7 @@ if (localStorage.getItem('darkMode') === "on") {
           <div class="page__row page__row_head">
             <div class="page__col">
               <div class="page__hello h5">Hi <span id="usernametwo"></span></div>
-              <div class="page__welcome h2">Buy Airtime</div>
+              <div class="page__welcome h2">Transfer :)</div>
             </div>
             <div class="page__col">
               <div class="header"><button class="header__burger"></button>
@@ -173,38 +190,71 @@ if (localStorage.getItem('darkMode') === "on") {
             </div>
           </div>
           <div class="page__content">
-            
+           
             <div class="page__content page__content_pt64">
             <div class="page__stat">
-              <div class="page__title h6">Buy Airtime for your mobile number</div>
+              <div class="page__title h6">Send Money to Nigerian Bank Account</div>
              <br/>
               <div class="products products_history">
                 <div class="products__table">
-                    <form class="popup__form buyairtime">
+                    <form class="popup__form sendmoney">
                     
                    
                     
                     <div class="popup__fieldset">
                     <div class="popup__row">
                         <div class="popup__field field">
-                        <div class="field__label">Mobile Number</div>
+                        <div class="field__label">Beneficiary Account Number</div>
                         <div class="field__wrap">
-                            <input class="field__input" type="tel" placeholder="Phone Number" id="phonenumber" maxlength="11"/> 
+                            <input class="field__input" type="number" placeholder="Account Number" id="accountnumber" maxlength="10" required/> 
+                            <label id="accountname"></label>
                         </div>
                         </div>
                         <div class="popup__field field">
-                        <div class="field__label">Amount</div>
-                        <div class="field__wrap"><input class="field__input" type="number" placeholder="Amount" id="amount" min="50"/></div>
+                        <div class="field__label">Bank</div>
+                        <div class="field__wrap">
+                          <select class="field__input" id="banklist" onchange="findBeneficiary()">
+                              <option value="">Choose Beneficiary Bank</option>
+                          </select>  
+                        </div>
                         </div>
                     </div>
-                   
+                    <div class="popup__row">
+                        <div class="popup__field field">
+                        <div class="field__label">Enter Amount to send to <span id="accountname2">Beneficiary</span></div>
+                        <div class="field__wrap">
+                            <input class="field__input" type="number" placeholder="Amount" id="amount" maxlength="100" min="100" required/> 
+                        </div>
+                        </div>
+                        <div class="popup__field field">
+                        <div class="field__label">Transaction Remarks</div>
+                        <div class="field__wrap">
+                            <input class="field__input" type="text" placeholder="Transaction Remarks" id="remarks" maxlength="20" require/> 
+                        </div>
+                        </div>
                     </div>
-                    <button class="popup__btn btn btn_black" type="submit">Buy Airtime</button>
+                    <div class="popup__row">
+                        
+                        <div class="popup__field field">
+                        <div class="field__label">Send Anonymously</div>
+                        <div class="field__wrap">
+                            <select class="field__input" id="anony">
+                              <option value="">No</option>
+                              <option value="yes">Yes</option>
+                            </select>
+                            <label>When you send as anonymous, the Beneficiary/receiver wouldn't see your name</label>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <button class="popup__btn btn btn_black" type="submit" id="proceedbtn">Send Money</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    </div>
+             </div>
+          </div>
+          </div>
         </div>
       </div>
     </div>
@@ -277,7 +327,7 @@ if (localStorage.getItem('darkMode') === "on") {
     <script src="js/app.js"></script>
     <script src="js/charts.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/app/sendmoney.js"></script>
+    <script src="js/app/transfer.js"></script>
   </body>
 
 

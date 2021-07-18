@@ -1,3 +1,5 @@
+var api_url = 'http://192.168.0.181'
+var base_url = 'http://192.168.0.181/falconley'
 function get(e){
     return document.getElementById(e);
 }
@@ -57,7 +59,7 @@ function value(e){
 window.addEventListener('load', (event) => {
    window.setTimeout(()=>{
     closeload();
-   },5000);
+   },2000);
     
 var functionString = "componentDidMount"
 
@@ -70,6 +72,20 @@ var functionString = "componentDidMount"
      //the function does not exist on this page
     }
 });
+$('.modes').click(function(){
+    toggleDarkMode();
+    var body = $('body');
+    if (!body.hasClass('dark')) {
+        //turn on dark
+        $('#modeicon').addClass('fa-moon');
+        $('#modeicon').removeClass('fa-sun');
+    } else {
+        //turn on light
+        $('#modeicon').removeClass('fa-moon');
+        $('#modeicon').addClass('fa-sun');
+        
+    }
+})
 function toggleDarkMode(){
     var body = $('body');
     if (!body.hasClass('dark')) {
@@ -91,14 +107,14 @@ function say(e){
     })
 }
 
-function inform(text,type){
+function inform(text,type,time){
     Swal.fire({
         icon:type ? type:'',
         html:text,
         allowOutsideClick:true,
         showCloseButton:true,
         showConfirmButton:false,
-        timer:5000
+        timer: time ? 5000 : false
       })
 }
 function load(e){
@@ -122,7 +138,7 @@ $('.logout').click(function(){
     redirectTo("login");
 })
 function closeload(){
-    $('.loadscreen').hide(500);
+    $('.loadscreen').hide(100);
 }
 function show(id){
     get(id).style.display='block';
@@ -155,6 +171,9 @@ function httpPost(requrl,reqbody){
     if(window.location.origin=='http://localhost'){
            var prefix ='http://localhost/falconley';
        }
+       else if(window.location.origin==api_url){
+           var prefix = base_url;
+       }
        else {
             var prefix ='https://phalconwise.herokuapp.com';
         //var prefix = "https://begetmusic.com/sorosoke/";
@@ -162,6 +181,7 @@ function httpPost(requrl,reqbody){
     // var prefix ='https://phalconwise.herokuapp.com';
     // console.log(prefix+requrl);
     // return  fetch(prefix+requrl,body)
+    // alert(prefix);
     var url = prefix+requrl;
     return  fetch(url, {
         method: 'post',
@@ -181,6 +201,9 @@ function http(requrl){
     if(window.location.origin=='http://localhost'){
            var prefix ='http://localhost/falconley';
        }
+       else if(window.location.origin==api_url){
+        var prefix = base_url;
+    }
        else {
             var prefix ='https://phalconwise.herokuapp.com';
         //var prefix = "https://begetmusic.com/sorosoke/";

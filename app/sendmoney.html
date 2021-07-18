@@ -16,18 +16,18 @@
         <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
-        <meta name="description" content="Phalconwise payments!">
+        <meta name="description" content="Payments made easier and faster by Phalconwise!">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@ui8">
         <meta name="twitter:title" content="Unity">
-        <meta name="twitter:description" content="Phalconwise payments!">
+        <meta name="twitter:description" content="Payments made easier and faster by Phalconwise!">
         <meta name="twitter:creator" content="@ui8">
         <meta name="twitter:image" content="img/twitter-card.jpg">
         <meta property="og:title" content="Phalconwise">
         <meta property="og:type" content="Article">
         <meta property="og:url" content="index.html">
         <meta property="og:image" content="img/fb-og-image.jpg">
-        <meta property="og:description" content="Phalconwise payments!">
+        <meta property="og:description" content="Payments made easier and faster by Phalconwise!">
         <meta property="og:site_name" content="Phalconwise">
         <meta property="fb:admins" content="132951670226590">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
@@ -124,7 +124,7 @@ if (localStorage.getItem('darkMode') === "on") {
           <div class="page__row page__row_head">
             <div class="page__col">
               <div class="page__hello h5">Hi <span id="usernametwo"></span></div>
-              <div class="page__welcome h2">Account Details</div>
+              <div class="page__welcome h2">Send Money</div>
             </div>
             <div class="page__col">
               <div class="header"><button class="header__burger"></button>
@@ -173,113 +173,38 @@ if (localStorage.getItem('darkMode') === "on") {
             </div>
           </div>
           <div class="page__content">
-            <div class="details details_statements">
-                  <div class="details__container">
-                    <div class="details__title h6 mobile-hide" id="accountname"><i class="fa fa-spinner fa-spin"></i></div>
-                    <div class="details__title caption" id="accountpurpose">
-                      <i class="fa fa-spinner fa-spin"></i>
-                    </div>
-                    <div class="dropdown js-dropdown">
-                      <div class="dropdown__head js-dropdown-head">Withdraw</div>
-                      <div class="dropdown__body js-dropdown-body">
-                        <a class="dropdown__item withdraw">
-                          <div class="dropdown__title title">Withdraw to Wallet </div>
-                          <div class="dropdown__info caption">Withdraw to your spending wallet</div>
-                        </a>
-                        <a class="dropdown__item" href="#">
-                          <div class="dropdown__title title">Request for account Audit(Coming soon)</div>
-                          <div class="dropdown__info caption">Get a dedicated page that can be viewed by the public of how funds were received and spent in this account</div>
-                        </a>
-        
-                        </div>
-                    </div>
-                   
-                    <div class="details__list details__list_three">
-                      <div class="details__item">
-                        <div class="details__head">
-                          <div class="details__preview bg-purple"><img class="details__pic" src="img/folder.svg" alt=""></div>
-                          <div class="details__text caption-sm">Balance</div>
-                        </div>
-                        <div class="details__number h1">&#8358;<span id="balance"><i class="fa fa-spinner fa-spin"></i></span></div>
-                        <div class="details__indicator">
-                          <div class="details__progress bg-purple" style="width: 100%;"></div>
-                        </div>
-                      </div>
-                      <div class="details__item">
-                        <div class="details__head">
-                          <div class="details__preview bg-pink"><img class="details__pic" src="img/activity.svg" alt=""></div>
-                          <div class="details__text caption-sm">Payouts(Withdrawals)</div>
-                        </div>
-                        <div class="details__counter h4" id="payouts"><i class="fa fa-spinner fa-spin"></i></div>
-                        <div class="details__indicator">
-                          <div class="details__progress bg-pink" style="width: 80%;"></div>
-                        </div>
-                      </div>
-                      <div class="details__item">
-                        <div class="details__head">
-                          <div class="details__preview bg-blue"><img class="details__pic" src="img/bag.svg" alt=""></div>
-                          <div class="details__text caption-sm">Senders (Transfer Count)</div>
-                        </div>
-                        <div class="details__counter h4" id="senders"><i class="fa fa-spinner fa-spin"></i></div>
-                        <div class="details__indicator">
-                          <div class="details__progress bg-blue" style="width: 55%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            
             <div class="page__content page__content_pt64">
             <div class="page__stat">
-              <div class="page__title h6">Account Transactions (<span id="accountcount"><i class="fa fa-spinner fa-spin"></i></span>)</div>
+              <div class="page__title h6">Send Money to a Phalconwise User</div>
              <br/>
               <div class="products products_history">
                 <div class="products__table">
-                  <div class="products__row products__row_head">
-
+                    <form class="popup__form sendmoney">
                     
-                    <div class="products__cell">Transaction</div>
-                    <div class="products__cell amounthidden">Amount</div>
-                    <div class="products__cell">Transaction Reference</div>
-                    <div class="products__cell">Status</div>
-                    <div class="products__cell">Date Created</div>
+                   
                     
-                  </div>
-                  </div>
-                  <div class="products__table" id="accountstable">
-                    
-                    <div class="products__row clickable" account="7810727588">
-                        
-                        
-                        <div class="products__cell">
-                        <div class="products__transaction caption color-gray">oddkdkdkkdkdkdkdkdkdkdk</div>
+                    <div class="popup__fieldset">
+                    <div class="popup__row">
+                        <div class="popup__field field">
+                        <div class="field__label">Phalconwise Username</div>
+                        <div class="field__wrap">
+                            <input class="field__input" type="text" placeholder="Phalconwise Username" id="username"/> 
                         </div>
-                        <div class="products__cell color-blue amounthidden">₦2000</div>
-                        <div class="products__cell color-blue">3939398484</div>
-                        <div class="products__cell">
-                        <div class="products__status caption  bg-green">Successful</div>
                         </div>
-                        <div class="products__cell color-gray">21 days ago</div>
+                        <div class="popup__field field">
+                        <div class="field__label">Amount</div>
+                        <div class="field__wrap"><input class="field__input" type="number" placeholder="Amount" id="amount"/></div>
+                        </div>
                     </div>
-                    <br/>
-                    <div class="products__body">
-                      <div class="products__line">
-                          <div class="products__col color-red mobilebalance">&#8358;50000</div>
-                          <div class="products__status caption accountstatus bg-green">Successful</div>
-                          &nbsp;&nbsp;
-                      <div class="products__col color-gray datecreated">21 days ago</div>
-            
+                   
                     </div>
-                  
-
-               
+                    <button class="popup__btn btn btn_black" type="submit">Send Money</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-               
-                  </div>
-               
-              </div>
-            </div>
-          </div>
-          </div>
+             </div>
         </div>
       </div>
     </div>
@@ -352,7 +277,7 @@ if (localStorage.getItem('darkMode') === "on") {
     <script src="js/app.js"></script>
     <script src="js/charts.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/app/account.js"></script>
+    <script src="js/app/sendmoney.js"></script>
   </body>
 
 

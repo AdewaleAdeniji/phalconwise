@@ -16,18 +16,18 @@
     <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Phalconwise payments!">
+    <meta name="description" content="Payments made easier and faster by Phalconwise!">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@ui8">
     <meta name="twitter:title" content="Unity">
-    <meta name="twitter:description" content="Phalconwise payments!">
+    <meta name="twitter:description" content="Payments made easier and faster by Phalconwise!">
     <meta name="twitter:creator" content="@ui8">
     <meta name="twitter:image" content="img/twitter-card.jpg">
     <meta property="og:title" content="Unity">
     <meta property="og:type" content="Article">
     <meta property="og:url" content="index.html">
     <meta property="og:image" content="img/fb-og-image.jpg">
-    <meta property="og:description" content="Phalconwise payments!">
+    <meta property="og:description" content="Payments made easier and faster by Phalconwise!">
     <meta property="og:site_name" content="Phalconwise">
     <meta property="fb:admins" content="132951670226590">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
@@ -140,6 +140,7 @@ if (localStorage.getItem('darkMode') === "on") {
 
         })
         function inform(message){
+            get('loginbtn').disabled=false;
             get('info').innerHTML = message;
         }
         function getCode(data){
@@ -199,6 +200,7 @@ if (localStorage.getItem('darkMode') === "on") {
                                     })
                                     
                                     return data;
+                                    redirectTo('login');
                                 }
                                 else if(data.code==205){
                                     getCode(datas);

@@ -98,7 +98,22 @@ div#loadscreen {
     padding: 10px !important;
     word-break: break-word;
 }
-
+a.header__user.modes {
+    font-size: 25px;
+    text-align: right;
+}
+.fa-moon {
+    color: #6C5DD3;
+}
+.fa-sun {
+    color: #fff;
+}
+a.dropdown__item.withdraw {
+    cursor: pointer;
+}
+select.field__input {
+    color: #6C5DD3 !important;
+}
 @keyframes loadtext{
     0% {
         color:#e15b64;
@@ -120,6 +135,9 @@ div#loadscreen {
     .widget__counter.title.title_md.color-purple {
         font-size: 40px;
     }
+    a.header__user.modes { 
+        /* display:none; */
+    }
 }
 
 @media(max-width:1000px){
@@ -128,7 +146,8 @@ div#loadscreen {
     }
 }
 /*mobile devices*/
-@media (max-width:500px) {
+@media (max-width:700px) {
+    
     .mobile-hide {
         display: none;
     }
