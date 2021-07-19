@@ -1,4 +1,4 @@
-ErrorDocument 404 http://localhost/phalconwise/error.html
+ErrorDocument 404 http://localhost/phalconwise/404.html
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f

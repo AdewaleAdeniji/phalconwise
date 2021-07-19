@@ -3,7 +3,7 @@
   <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8">
-    <title>Buy Airtime: (Supports All Network)</title>
+    <title>Phalconwise Payment Codes</title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta http-equiv="content-language" content="en">
@@ -30,7 +30,7 @@
         <meta property="og:description" content="Payments made easier and faster by Phalconwise!">
         <meta property="og:site_name" content="Phalconwise">
         <meta property="fb:admins" content="132951670226590">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" media="all" href="f2/css/all.css"/>
         <link rel="stylesheet" media="all" href="css/app.css">
         <link rel="stylesheet" media="all" href="css/style.css">
@@ -124,7 +124,7 @@ if (localStorage.getItem('darkMode') === "on") {
           <div class="page__row page__row_head">
             <div class="page__col">
               <div class="page__hello h5">Hi <span id="usernametwo"></span></div>
-              <div class="page__welcome h2">Buy Airtime</div>
+              <div class="page__welcome h2">Phalcon Codes</div>
             </div>
             <div class="page__col">
               <div class="header"><button class="header__burger"></button>
@@ -173,38 +173,43 @@ if (localStorage.getItem('darkMode') === "on") {
             </div>
           </div>
           <div class="page__content">
-            
+            <div class="banner">
+              <div class="banner__container">
+                <div class="banner__preview"><img class="banner__pic" src="img/banner-pic.png" alt=""></div>
+                <div class="banner__wrap">
+                  <div class="banner__title h3">Your Phalcon Codes</div>
+                  <div class="banner__text">Create a new Phalcon Code for payment</div>
+                  <button class="banner__btn btn btn_white createcode">Create Code</button>
+                </div>
+              </div>
+            </div>
             <div class="page__content page__content_pt64">
             <div class="page__stat">
-              <div class="page__title h6">Buy Airtime for your mobile number</div>
+              <div class="page__title h6">Codes (<span id="codecount"><i class="fa fa-spinner fa-spin"></i></span>)</div>
              <br/>
+             
               <div class="products products_history">
                 <div class="products__table">
-                    <form class="popup__form buyairtime">
+                  <div class="products__row products__row_head">
                     
-                   
                     
-                    <div class="popup__fieldset">
-                    <div class="popup__row">
-                        <div class="popup__field field">
-                        <div class="field__label">Mobile Number</div>
-                        <div class="field__wrap">
-                            <input class="field__input" type="tel" placeholder="Phone Number" id="phonenumber" maxlength="11" autofocus/> 
-                        </div>
-                        </div>
-                        <div class="popup__field field">
-                        <div class="field__label">Amount</div>
-                        <div class="field__wrap"><input class="field__input" type="number" placeholder="Amount" id="amount" min="50"/></div>
-                        </div>
-                    </div>
-                   
-                    </div>
-                    <button class="popup__btn btn btn_black" type="submit">Buy Airtime</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
+                    <div class="products__cell">Code Name</div>
+                    <div class="products__cell">Code</div>
+                    <div class="products__cell">Status</div>
+                    <div class="products__cell">Date Created</div>
+                    <div class="products__cell">Action</div>
+                  </div>
+                  </div>
+
+                  <div class="products__table" id="accountstable">
+                     
+                  </div>
+                </div>
+                <div class="products__more"><button class="products__btn btn btn_black" onclick="getCodes()">Reload</button></div>
+              </div>
+            </div>
+          </div>
+          </div>
         </div>
       </div>
     </div>
@@ -277,7 +282,7 @@ if (localStorage.getItem('darkMode') === "on") {
     <script src="js/app.js"></script>
     <script src="js/charts.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/app/sendmoney.js"></script>
+    <script src="js/app/codes.js"></script>
   </body>
 
 

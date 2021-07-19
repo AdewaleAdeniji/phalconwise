@@ -3,7 +3,7 @@
   <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8">
-    <title>Buy Airtime: (Supports All Network)</title>
+    <title>Create Phalcon Code</title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta http-equiv="content-language" content="en">
@@ -30,7 +30,7 @@
         <meta property="og:description" content="Payments made easier and faster by Phalconwise!">
         <meta property="og:site_name" content="Phalconwise">
         <meta property="fb:admins" content="132951670226590">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet"> -->
         <link rel="stylesheet" media="all" href="f2/css/all.css"/>
         <link rel="stylesheet" media="all" href="css/app.css">
         <link rel="stylesheet" media="all" href="css/style.css">
@@ -124,7 +124,7 @@ if (localStorage.getItem('darkMode') === "on") {
           <div class="page__row page__row_head">
             <div class="page__col">
               <div class="page__hello h5">Hi <span id="usernametwo"></span></div>
-              <div class="page__welcome h2">Buy Airtime</div>
+              <div class="page__welcome h2">Create Phalcon Code</div>
             </div>
             <div class="page__col">
               <div class="header"><button class="header__burger"></button>
@@ -176,31 +176,54 @@ if (localStorage.getItem('darkMode') === "on") {
             
             <div class="page__content page__content_pt64">
             <div class="page__stat">
-              <div class="page__title h6">Buy Airtime for your mobile number</div>
+              <div class="page__title h6"></div>
              <br/>
               <div class="products products_history">
                 <div class="products__table">
-                    <form class="popup__form buyairtime">
-                    
+                    <form class="popup__form createcode">
+                   
                    
                     
                     <div class="popup__fieldset">
-                    <div class="popup__row">
+                    
                         <div class="popup__field field">
-                        <div class="field__label">Mobile Number</div>
-                        <div class="field__wrap">
-                            <input class="field__input" type="tel" placeholder="Phone Number" id="phonenumber" maxlength="11" autofocus/> 
+                            <div class="field__label">Code Name</div>
+                            <div class="field__wrap">
+                                <input class="field__input" type="text" placeholder="Code Name" id="codename" minlength="3" maxlength="10" required/>
+                                <label>Give a name to your code e.g Giveaway code, shopping code</label>
+                            </div>
                         </div>
-                        </div>
+                    </div>
+                        <br/>
                         <div class="popup__field field">
-                        <div class="field__label">Amount</div>
-                        <div class="field__wrap"><input class="field__input" type="number" placeholder="Amount" id="amount" min="50"/></div>
+                            <div class="field__label">Amount</div>
+                                <div class="field__wrap">
+                                    <input class="field__input" type="number" placeholder="Code Amount" id="codeamount" min="10" required/> 
+                                    <label>Amount that will be given each the code is used</label>
+                                </div>
                         </div>
+                        <br/><br/>
+                        <div class="popup__field field">
+                            <div class="field__label">Interval / Frequency</div>
+                                <div class="field__wrap">
+                                    <input class="field__input" type="number" placeholder="Code Interval" id="codeinterval" min="1" value="1" required/> 
+                                    <label>This is the number of times this code would be used</label>
+                                </div>
+                        </div>
+                        <br/><br/>
+                        <div class="popup__field field">
+                            <div class="field__label">Code Note</div>
+                                <div class="field__wrap">
+                                    <input class="field__input" type="text" placeholder="Code Note" id="codenote"/> 
+                                    <label>Attach a short note to your code, this shows to the user when it is used for payment</label>
+                                </div>
+                        </div>
+                        
                     </div>
                    
                     </div>
-                    <button class="popup__btn btn btn_black" type="submit">Buy Airtime</button>
-                                </form>
+                    <button class="popup__btn btn btn_black" type="submit">Create Code</button>
+                    </form>
                             </div>
                         </div>
                     </div>
@@ -277,7 +300,7 @@ if (localStorage.getItem('darkMode') === "on") {
     <script src="js/app.js"></script>
     <script src="js/charts.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/app/sendmoney.js"></script>
+    <script src="js/app/create-code.js"></script>
   </body>
 
 
