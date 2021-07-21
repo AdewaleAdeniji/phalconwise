@@ -74,7 +74,7 @@
             confirmButtonText:'Redeem Code',
             footer: info ? info : 'Phalcon Code is a 15 digit number that can be used to redeem airtime, cash and pay at checkouts e.g 013990783162867',
             preConfirm: (pin) => {
-                pin = parseFloat(pin);
+                // pin = parseFloat(pin);
                 if(!valnumber(pin)){
                     Swal.showValidationMessage(
                         `Code must contain only numbers(0-9)`
@@ -87,7 +87,7 @@
         })
         .then((cod)=>{
             if(cod.isConfirmed){
-                var code = (cod.value).toString();
+                var code = cod.value;
                 if(code.length==15){
                     if(valnumber(code)){
                         validateCode(code);
