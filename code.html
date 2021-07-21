@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Phalconwise Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta http-equiv="content-language" content="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="apple-touch-icon" sizes="180x180" href="img/logos/logo2.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="img/logos/logo2.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="img/logos/logo2.png">
+        <link rel="manifest" href="img/site.html">
+        <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+        <meta name="description" content="Payments made easier and faster by Phalconwise!">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="Phalconwise!">
+        <meta name="twitter:title" content="Unity">
+        <meta name="twitter:description" content="Payments made easier and faster by Phalconwise!">
+        <meta name="twitter:creator" content="Phalconwise!">
+        <meta name="twitter:image" content="img/twitter-card.jpg">
+        <meta property="og:title" content="Phalconwise">
+        <meta property="og:type" content="Article">
+        <meta property="og:url" content="index.html">
+        <meta property="og:image" content="img/fb-og-image.jpg">
+        <meta property="og:description" content="Payments made easier and faster by Phalconwise!">
+        <meta property="og:site_name" content="Phalconwise">
+        <meta property="fb:admins" content="132951670226590">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
+        <link rel="stylesheet" media="all" href="f2/css/all.css"/>
+        <link rel="stylesheet" media="all" href="app/css/app.css">
+        <link rel="stylesheet" media="all" href="app/css/style.css">
+        <link rel="stylesheet" media="all" href="app/css/toast.css">
+    <script>
+    var viewportmeta = document.querySelector('meta[name="viewport"]');
+        if (viewportmeta) {
+        if (screen.width < 375) {
+            var newScale = screen.width / 375;
+            viewportmeta.content = 'width=375, minimum-scale=' + newScale + ', maximum-scale=1.0, user-scalable=no, initial-scale=' + newScale + '';
+        } else {
+            viewportmeta.content = 'width=device-width, maximum-scale=1.0, initial-scale=1.0';
+        }
+}</script>
+</head>
+<body>
+    <style>
+        body{
+            background:'#12112de8';
+        }   
+    </style>
+    <script src="app/js/lib/jquery.min.js"></script>
+    <script src="app/js/sw2.js"></script>
+    <script type="text/javascript">
+       function restart(info){
+            Swal.fire({
+            title:'Enter Phalconwise Code',
+            input:'tel',
+            inputAttributes:{
+                required:true,
+                minlength:15,
+                maxlength:15,
+            },
+            validationMessage:'Phalcon Code must be 15 digits ',
+            showCancelButton:false,
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+            confirmButtonColor:'#6C5DD3',
+            backdrop:'#12112de8',
+            confirmButtonText:'Redeem Code',
+            footer: info ? info : 'Phalcon Code is a 15 digit number that can be used to redeem airtime, cash and pay at checkouts e.g 013990783162867',
+            preConfirm: (pin) => {
+                pin = parseFloat(pin);
+                if(!valnumber(pin)){
+                    Swal.showValidationMessage(
+                        `Code must contain only numbers(0-9)`
+                      )
+                }
+                else {
+                    return pin;
+                }
+            }
+        })
+        .then((cod)=>{
+            if(cod.isConfirmed){
+                var code = (cod.value).toString();
+                if(code.length==15){
+                    if(valnumber(code)){
+                        validateCode(code);
+                    }   
+                    else {
+                        restart('Code must contain only numbers(0-9)');
+                    }
+                }   
+                else {
+                    restart('Code must be up to 15 digits');
+                }
+            }
+            else {
+                restart('Kilode shele');
+            }
+        })
+    }
+    var loadtype = 0;
+    var code = 0;
+    function validateCode(code){
+        var json = JSON.stringify({"code":code});
+        load()
+        httpPost('/code/use',json)
+        .then(response=>response.json())
+        .then((data)=>{
+            if(data.code==200){
+                askForType(data.text.amount,data.text.message,code);
+            }
+            else {
+                inform(data.text);
+            }
+        })
+        .catch((err)=>{
+            inform('Error: Please check your internet connection and try again');
+        })
+    }
+    function load(){
+        Swal.fire({
+            text:'loading...',
+            footer:'<i class="fa fa-spinner fa-spin"></i>',
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+            showCancelButton:false,
+            showConfirmButton:false
+        })
+    }
+    function askForType(amount,text,code){
+        Swal.fire({
+            icon:'success',
+            text:'The code is worth '+amount+' what do you want to use it to do?',
+            input:'select',
+            inputOptions:{
+                "1":"Buy Airtime ",
+                // "2":"Transfer to my account"
+            },
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+            showCancelButton:false,
+            confirmButtonColor:'#6C5DD3',
+            backdrop:'#12112de8',
+            confirmButtonText:'Redeem Code'
+        })
+        .then((select)=>{
+            if(select.isConfirmed){
+                loadtype = select.value;
+                if(loadtype==1){
+                    askForNumber(code);
+                }
+                else{
+                    askForAccount(code);
+                }
+            }
+            else {
+                restart('Code Redeem Canceled');
+            }
+        })
+    }
+    function askForNumber(code){
+        Swal.fire({
+            icon:'question',
+            text:'Please enter your correct mobile phone number',
+            input:'text',
+            inputAttributes:{
+                required:true,
+            },
+            allowOutsideClick:false,
+            allowEscapeKey:false,
+            showCancelButton:false,
+            confirmButtonColor:'#6C5DD3',
+            backdrop:'#12112de8',
+            confirmButtonText:'Redeem Code',
+            showDenyButton:true,
+            denyButtonText:'Restart',
+            preConfirm: (pin) => {
+                // pin = parseFloat(pin);
+                if(!valnumber(pin)){
+                    Swal.showValidationMessage(
+                        `Number must contain only numbers(0-9)`
+                      )
+                }
+                else if(pin.length!=11){
+                    // console.log(pin.length);
+                    // console.log(pin.toString().length)
+                    Swal.showValidationMessage(
+                        `Number should be eleven characters `
+                      )
+                }
+                else {
+                    return pin;
+                }
+            }
+        })
+        .then((phone)=>{
+            if(phone.isConfirmed){
+                var phonenumber = phone.value;
+                if(valnumber(phonenumber)&&phonenumber.toString().length==11){
+                    var json = JSON.stringify({
+                                    "code":code,
+                                    "loadtype":loadtype,
+                                    "phonenumber":phonenumber,
+                                    "accountno":"",
+                                    "bank":""
+                                })
+                    redeemCode(json);
+                        
+                }
+                else {
+                    askForNumber('Phone number is invalid');
+                }
+            }
+            else if(phone.isDenied){
+                restart('');
+            }
+            else {
+                askForNumber(code);
+            }
+        })
+        
+    }
+    function redeemCode(json){
+        load()
+        httpPost('/code/use',json)
+        .then(response=>response.json())
+        .then((data)=>{
+            inform(data.text);
+        })
+        .catch((err)=>{
+            inform('Error Occured');
+        })
+    }
+    restart('');
+        
+        function inform(text,type,time){
+            Swal.fire({
+                icon:type ? type:'',
+                html:text,
+                allowOutsideClick:true,
+                showCloseButton:true,
+                showConfirmButton:false,
+                timer: time ? 5000 : false
+            }).then(()=>{
+                restart();
+            })
+
+        }
+        function valnumber(number){
+            return /^\d*$/.test(number);
+        }
+        function emailval(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+        function httpPost(requrl,reqbody){
+            if(window.location.origin=='http://localhost'){
+                var prefix ='http://localhost/falconley';
+            }
+            else if(window.location.origin==api_url){
+                var prefix = base_url;
+            }
+            else {
+                    var prefix ='https://phalconwise.herokuapp.com';
+                //var prefix = "https://begetmusic.com/sorosoke/";
+            }
+            // var prefix ='https://phalconwise.herokuapp.com';
+            // console.log(prefix+requrl);
+            // return  fetch(prefix+requrl,body)
+            // alert(prefix);
+            var url = prefix+requrl;
+            return  fetch(url, {
+                method: 'post',
+                body: reqbody
+            });
+            
+                
+        
+        
+        }
+
+    </script>
+</body>
+</html>

@@ -168,7 +168,7 @@ $('.createcode').submit(function(e){
             if(response(data)){
                 Swal.fire({
                     icon:'success',
-                    html:`Code created successfully <br/> You can now share this code and it can be used for payment. <br/>Code : ${data.text.code}. <br/>Code can be used on our <a href="code">Redeem</a> for now, We'll be available on other channels soon`,
+                    html:`Code created successfully <br/> You can now share this code and it can be used for payment. <br/>Code : ${data.text.code}. <br/>Code can be used on our <a href="../code">Redeem</a> for now, We'll be available on other channels soon`,
                     input:'text',
                     inputValue:data.text.code,
                     inputAttributes:{
@@ -176,7 +176,7 @@ $('.createcode').submit(function(e){
                         disabled:true
                     },
                     confirmButtonText:'Okay',
-                    footer:'When you share this code, they can be redeemed on the <a href="code">Redeem Page</a> '
+                    footer:'When you share this code, they can be redeemed on the <a href="../code">Redeem Page</a> '
             })
             .then((data)=>{
                 window.setTimeout(()=>{
