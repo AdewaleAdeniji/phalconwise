@@ -64,37 +64,55 @@ if (localStorage.getItem('darkMode') === "on") {
             <div class="sidebar__list">
               <div class="sidebar__group">
                 <div class="sidebar__caption caption-sm">Phalcon<span>wise</span></div>
-                <div class="sidebar__menu"><a class="sidebar__item" href="dashboard">
+                <div class="sidebar__menu">
+                  <a class="sidebar__item" href="dashboard">
                     <div class="sidebar__icon"><svg class="icon icon-overview">
                         <use xlink:href="img/sprite.svg#icon-overview"></use>
                       </svg></div>
                     <div class="sidebar__text">Overview</div>
                   </a>
+                  <a class="sidebar__item" href="transfers">
+                    <div class="sidebar__icon"><svg class="icon icon-discovery">
+                        <use xlink:href="img/sprite.svg#icon-discovery"></use>
+                      </svg></div>
+                    <div class="sidebar__text">Spend</div>
+                  </a>
                   
-                  <a class="sidebar__item active" href="accounts">
+                  <a class="sidebar__item" href="accounts">
                     <div class="sidebar__icon"><svg class="icon icon-wallet">
                         <use xlink:href="img/sprite.svg#icon-wallet"></use>
                       </svg></div>
                     <div class="sidebar__text">Accounts</div>
                   </a>
-                  <a class="sidebar__item js-popup-open" href="#popup-settings" data-effect="mfp-zoom-in">
+                  <a class="sidebar__item active" href="codes">
+                    <div class="sidebar__icon">
+                        <svg class="icon icon-bag">
+                          <use xlink:href="img/sprite.svg#icon-bag"></use>
+                        </svg>
+                      </div>
+                    <div class="sidebar__text">Phalcon Codes</div>
+                  </a>
+                  <a class="sidebar__item" href="transactions">
+                   
+                    <div class="sidebar__icon"><svg class="icon icon-document">
+                        <use xlink:href="img/sprite.svg#icon-document"></use>
+                      </svg></div>
+                    
+                    <div class="sidebar__text">Transactions</div>
+                  </a>
+                  <a class="sidebar__item js-popup-open hidden" href="#popup-settings" data-effect="mfp-zoom-in">
                     <div class="sidebar__icon"><svg class="icon icon-settings">
                         <use xlink:href="img/sprite.svg#icon-settings"></use>
                       </svg></div>
                     <div class="sidebar__text">Settings </div>
-                  </a></div>
+                  </a>
+                </div>
               </div>
               
             </div>
             
             <div class="sidebar__profile">
               <div class="sidebar__details">
-                <a class="sidebar__link" href="profile">
-                  <div class="sidebar__icon"><svg class="icon icon-profile">
-                      <use xlink:href="img/sprite.svg#icon-profile"></use>
-                    </svg></div>
-                  <div class="sidebar__text">Profile</div>
-                </a>
                 <a class="sidebar__link logout" href="#">
                   <div class="sidebar__icon"><svg class="icon icon-logout">
                       <use xlink:href="img/sprite.svg#icon-logout"></use>
@@ -124,7 +142,7 @@ if (localStorage.getItem('darkMode') === "on") {
           <div class="page__row page__row_head">
             <div class="page__col">
               <div class="page__hello h5">Hi <span id="usernametwo"></span></div>
-              <div class="page__welcome h2">Account Details</div>
+              <div class="page__welcome h2" id="code">Code Details</div>
             </div>
             <div class="page__col">
               <div class="header"><button class="header__burger"></button>
@@ -175,21 +193,22 @@ if (localStorage.getItem('darkMode') === "on") {
           <div class="page__content">
             <div class="details details_statements">
                   <div class="details__container">
-                    <div class="details__title h6 mobile-hide" id="accountname"><i class="fa fa-spinner fa-spin"></i></div>
-                    <div class="details__title caption" id="accountpurpose">
+                    <div class="details__title h6 mobile-hide" id="codename"><i class="fa fa-spinner fa-spin"></i></div>
+                    <div class="details__title caption" id="codedetails">
                       <i class="fa fa-spinner fa-spin"></i>
                     </div>
                     <div class="dropdown js-dropdown">
-                      <div class="dropdown__head js-dropdown-head">Withdraw</div>
+                      <div class="dropdown__head js-dropdown-head">Action</div>
                       <div class="dropdown__body js-dropdown-body">
-                        <a class="dropdown__item withdraw">
-                          <div class="dropdown__title title">Withdraw to Wallet </div>
-                          <div class="dropdown__info caption">Withdraw to your spending wallet</div>
+                        <a class="dropdown__item suspend">
+                          <div class="dropdown__title title">Suspend/Pause Code</div>
+                          <div class="dropdown__info caption">This code would not work/redeem when paused</div>
                         </a>
-                        <a class="dropdown__item" href="#">
-                          <div class="dropdown__title title">Request for account Audit(Coming soon)</div>
-                          <div class="dropdown__info caption">Get a dedicated page that can be viewed by the public of how funds were received and spent in this account</div>
+                        <a class="dropdown__item unsuspend">
+                          <div class="dropdown__title title">Unsuspend Code</div>
+                          <div class="dropdown__info caption">This code would work when unsuspended</div>
                         </a>
+                       
         
                         </div>
                     </div>
@@ -198,9 +217,9 @@ if (localStorage.getItem('darkMode') === "on") {
                       <div class="details__item">
                         <div class="details__head">
                           <div class="details__preview bg-purple"><img class="details__pic" src="img/folder.svg" alt=""></div>
-                          <div class="details__text caption-sm">Balance</div>
+                          <div class="details__text caption-sm">Amount</div>
                         </div>
-                        <div class="details__number h1">&#8358;<span id="balance"><i class="fa fa-spinner fa-spin"></i></span></div>
+                        <div class="details__number h1"><span id="codeamount"><i class="fa fa-spinner fa-spin"></i></span></div>
                         <div class="details__indicator">
                           <div class="details__progress bg-purple" style="width: 100%;"></div>
                         </div>
@@ -208,9 +227,9 @@ if (localStorage.getItem('darkMode') === "on") {
                       <div class="details__item">
                         <div class="details__head">
                           <div class="details__preview bg-pink"><img class="details__pic" src="img/activity.svg" alt=""></div>
-                          <div class="details__text caption-sm">Payouts(Withdrawals)</div>
+                          <div class="details__text caption-sm">Balance</div>
                         </div>
-                        <div class="details__counter h4" id="payouts"><i class="fa fa-spinner fa-spin"></i></div>
+                        <div class="details__counter h4" id="codebalance"><i class="fa fa-spinner fa-spin"></i></div>
                         <div class="details__indicator">
                           <div class="details__progress bg-pink" style="width: 80%;"></div>
                         </div>
@@ -218,42 +237,19 @@ if (localStorage.getItem('darkMode') === "on") {
                       <div class="details__item">
                         <div class="details__head">
                           <div class="details__preview bg-blue"><img class="details__pic" src="img/bag.svg" alt=""></div>
-                          <div class="details__text caption-sm">Senders (Transfer Count)</div>
+                          <div class="details__text caption-sm">Code Status</div>
                         </div>
-                        <div class="details__counter h4" id="senders"><i class="fa fa-spinner fa-spin"></i></div>
+                        <div class="details__counter h4" id="codestatus"><i class="fa fa-spinner fa-spin"></i></div>
                         <div class="details__indicator">
                           <div class="details__progress bg-blue" style="width: 55%;"></div>
                         </div>
                       </div>
+                      
                     </div>
                   </div>
                 </div>
             <div class="page__content page__content_pt64">
-            <div class="page__stat">
-              <div class="page__title h6">Account Transactions (<span id="accountcount"><i class="fa fa-spinner fa-spin"></i></span>)</div>
-             <br/>
-              <div class="products products_history">
-                <div class="products__table">
-                  <div class="products__row products__row_head">
-
-                    
-                    <div class="products__cell">Transaction</div>
-                    <div class="products__cell amounthidden">Amount</div>
-                    <div class="products__cell">Transaction Reference</div>
-                    <div class="products__cell">Status</div>
-                    <div class="products__cell">Date Created</div>
-                    
-                  </div>
-                  </div>
-                  <div class="products__table" id="accountstable">
-                    
-                    
-               
-                  </div>
-               
-              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

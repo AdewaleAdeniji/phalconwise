@@ -134,23 +134,55 @@ function getCodeHash(){
     }
 }
 function fetchCode(code){
+    get('code').innerHTML=code;
     http('/code/')
     .then(response=>response.json())
     .then((data)=>{
         if(response(data)){
-            console.log(data);
             if(data.text.count==0){
                 redirectTo('codes');
             }
             else {
                 var codeobj = {};
+                var found = false;
                 var codes = data.text.content;
                 codes.forEach((codee)=>{
                     if(codee.code==code){
                         codeobj = codee;
+                        found = true;
                     }
                 })
-                console.log(codeobj);
+                if(found){
+                    console.log(codeobj);
+                    get('codename').innerHTML=codeobj.codename;
+                    get('codedetails').innerHTML = codeobj.codenote+' <br/> Code Interval : '+codeobj.codeinterval+'<br/> Number of time Used :' + codeobj.codeused;
+                    get('codeamount').innerHTML=codeobj.codeamount;
+                    get('codebalance').innerHTML=codeobj.codebalance;
+                    get('codestatus').innerHTML = codeobj.codestatus == '1' ? 'Active' :  codeobj.codestatus == '2' ? 'Expired' : 'Inactive';
+                    /*
+                    code: "736003125832194"
+codeUsePin: ""
+codeamount: "100"
+codebalance: "100"
+codeid: "10"
+codeinterval: "1"
+codename: "codename"
+codenote: "note"
+codepin: ""
+codeseekapproval: ""
+codeshowname: "0"
+codestatus: "1"
+codetime: "2021-07-18 12:27:08.975329"
+codeusage: "0"
+codeused: "0"
+userid: "12"
+*/
+                    //codename,codedetails,codestatus,coedbalance,codeamount
+                }   
+                else {
+                    redirectTo('/codes');
+                }
+
             }
 
         }

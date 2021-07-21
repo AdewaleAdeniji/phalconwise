@@ -11,7 +11,7 @@ output, ruby, section, summary, time, mark, audio, video {
   border: 0;
   vertical-align: baseline;
 }
-
+@import url("loader.css");
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;

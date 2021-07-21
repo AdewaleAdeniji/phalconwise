@@ -131,6 +131,18 @@ function load(e){
             ${text}
         </div>
     </div>`;
+    var loader = `<div class="loadscreen" id="loadscreen">
+        <div class="loadcontent">
+        <div class="sk-fold">
+        <div class="sk-fold-cube"></div>
+        <div class="sk-fold-cube"></div>
+        <div class="sk-fold-cube"></div>
+        <div class="sk-fold-cube"></div>
+      </div>
+      ${text}
+        </div>
+    </div>`;
+    
     $('body').append(loader);
 }
 $('.logout').click(function(){
