@@ -141,6 +141,9 @@ h5 {
 small, .text_small {
     font-size: 0.8em;
 }
+form .d-flex a.btn.app-store-btn {
+    font-size: 14px;
+}
 a{
     text-decoration: none !important;
     background-color: transparent;

@@ -120,7 +120,7 @@ function getTrxs(){
             var transactions = data.text;
             var count = transactions.count;
             if(count==0){
-                get('trx').innerHTML=transactions.message;
+                get('trxs').innerHTML=transactions.message;
             }
             else {
                 var html = '';
