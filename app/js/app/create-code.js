@@ -71,26 +71,7 @@ async function dashboard(data){
 
         
     }
-    else if(data.phonenumber=="0"){
-        // Swal.fire({
-        //     icon:'info',
-        //     text:'To create a virtual account on phalconwise, you would need to enter your phone number',
-        //     confirmButtonText:'Okay!',
-        // })
-        // .then((v)=>{
-        //     Swal.fire({
-        //         icon:'question',
-        //         text:'Enter a valid 11 digits mobile phone number',
-        //         input:'tel',
-        //         inputAttributes:{
-        //             required:true,
-        //             min:11,
-        //             maxinput:11,
-        //         },
-        //         validationMessage:'Number must contain only digits and must be 11 characters'
-        //     })
-        // })
-    }
+    
     else {
         //all done
         displayData();
