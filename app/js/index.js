@@ -187,10 +187,11 @@ function httpPost(requrl,reqbody){
            var prefix = base_url;
        }
        else {
-            var prefix ='https://phalconwise.herokuapp.com';
+            var prefix ='https://phalcone.herokuapp.com';
         //var prefix = "https://begetmusic.com/sorosoke/";
      }
-    // var prefix ='https://phalconwise.herokuapp.com';
+    var prefix ='https://phalcone.herokuapp.com';
+    //var prefix ='http://localhost/falconley';
     // console.log(prefix+requrl);
     // return  fetch(prefix+requrl,body)
     // alert(prefix);
@@ -217,7 +218,7 @@ function http(requrl){
         var prefix = base_url;
     }
        else {
-            var prefix ='https://phalconwise.herokuapp.com';
+            var prefix ='https://phalcone.herokuapp.com';
         //var prefix = "https://begetmusic.com/sorosoke/";
      }
     // console.log(prefix+requrl);
@@ -267,7 +268,7 @@ function pref(){
      }
      else {
         //var prefix ='../backend/budgetapp/'
-       var prefy ='https://phalconwise.herokuapp.com/';
+       var prefy ='https://phalcone.herokuapp.com/';
    }
    return prefy;
 }

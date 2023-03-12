@@ -1,5 +1,5 @@
 //first thing is to check user token
-load('Loading Profile....');
+load('');
 var account = {};
 function componentDidMount(){
 if(token){
@@ -359,8 +359,8 @@ function getTransactions(){
 function tour(){
     Swal.fire({
         imageUrl:'img/ava-1.png',
-        html:'Welcome to Phalconwise, I am Feranmi and I would be your assistant on Phalconwise.<br/><br/><br/>Would you like me to take you through a 30 seconds overview of what you can do on Phalconwise?',
-        footer:'Going through the overview gives you an insight on how fast you can get things done on phalconwise, I 100% recommend -> Phalconwise User ',
+        html:'Welcome to Phalcone, I am Feranmi and I would be your assistant on Phalcone.<br/><br/><br/>Would you like me to take you through a 30 seconds overview of what you can do on Phalcone?',
+        footer:'Going through the overview gives you an insight on how fast you can get things done on phalcone, I 100% recommend -> Phalcone User ',
         confirmButtonText:'Okay, Take me through',
         cancelButtonText:'Just take me to the app',
         showCancelButton:true,
@@ -383,7 +383,7 @@ function tourStageTwo(){
     Swal.fire({
         imageUrl:'img/ava-1.png',
         html:'The Overview Page shows you your wallet balance(instant balance) and your cumulative balance(balance accross your different Phalcon accounts) <br/> The search panel provides quick access to in-app actions, transactions e.t.c. <br/><br/> Your last few transactions are also shown below your balance <br/> If we make any change in the future we\'ll sure let you know. Click Next to continue!',
-        footer:'Your funds are safe and secured on phalconwise',
+        footer:'Your funds are safe and secured on phalcone',
         confirmButtonText:'Continue!',
         cancelButtonText:' I\'m tired, Just take me to the app!',
         showCancelButton:true,
@@ -428,7 +428,7 @@ function tourStageThree(){
 function setDarkMode(){
     Swal.fire({
         icon:'success',
-        html:'You\'re all done <br/> Welcome to Phalconwise Once again. <br/><br/> Do you want to turn on dakrmode?',
+        html:'You\'re all done <br/> Welcome to Phalcone Once again. <br/><br/> Do you want to turn on dakrmode?',
         confirmButtonText:'Yes!',
         cancelButtonText:'No',
         showCancelButton:true,
@@ -499,7 +499,7 @@ function SetPin(){
                     if(response(data)){
                         Swal.fire({
                             icon:'success',
-                            html:data.text+'<br/><br/> Now you can perform send, receive and relax while making your transactions because Phalconwise got your back!',
+                            html:data.text+'<br/><br/> Now you can perform send, receive and relax while making your transactions because Phalcone got your back!',
                             confirmButtonText:'Okay good!',
                             confirmButtonColor:'#6C5DD3',
                             backdrop:'#12112de8'
